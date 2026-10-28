@@ -1,13 +1,40 @@
 # Session Archive Manager
 
-A Claude Code mod that lists every Claude Code session on your computer, archived ones included, grouped by their sidebar section.
+**Your Claude Code sessions, finally under control.**
 
-- Each session has an **ON/OFF toggle**. ON means shown in the sidebar, OFF means archived.
-- Press **Apply** to archive or restore every session you flipped. A restored session goes back into its sidebar section.
-- Each session shows a colored status: **Needs you** (red), **Done** (green) or **Not reviewed** (gray). Claude sets the status with the `set_session_status` tool the mod adds; ask Claude to review your sessions and it can fill them in.
-- Click a section's name to open or close it. New sessions appear when you press **Refresh**.
+Run Claude Code for a few weeks and your sidebar fills up. Finished tasks sit next to live ones, old experiments bury the work you need, and you can't tell at a glance which session still needs you. Session Archive Manager fixes that with one pane and one command.
 
-Type `/sessions` to open it.
+Type `/sessions` and see every session you have, archived ones included, grouped exactly like your sidebar. Flip a toggle, press **Apply**, and the sessions are archived or brought back. Nothing is ever deleted.
+
+## What you get
+
+- **One list for every session.** Active and archived, in the same sections you already use. Open a section to see what's inside, close it to keep things tidy.
+- **A toggle on every row.** ON means the session is shown in your sidebar. OFF means it's archived. One press of **Apply** makes all your changes at once.
+- **Archived sessions stay in their section.** Archive a session now and you'll still find it under the right heading, ready to bring back whenever you want.
+- **Restore to where it belongs.** A restored session goes back into its original sidebar section, not into a pile of ungrouped sessions.
+- **Color-coded status.** **Needs you** (red), **Done** (green) or **Not reviewed** (gray), so you can tell at a glance what still needs your attention and what has served its purpose.
+- **Claude fills in the statuses.** The mod adds a `set_session_status` tool. Ask Claude to review your sessions and it can mark each one for you.
+- **Newest first.** Inside every section, your most recent sessions come first.
+
+## How it fits your workflow
+
+1. **Work as usual.** Start as many sessions as you like, for different projects or ideas.
+2. **Run a review.** Ask Claude to look through your sessions and mark which are done and which still need you.
+3. **Open `/sessions`.** Your sections are listed, with status colors showing where to look first.
+4. **Clean up in seconds.** Turn OFF everything that's finished, then press **Apply**. Your sidebar is clear, and nothing is lost.
+5. **Need one back?** Turn it ON and press **Apply**. It returns to its original section.
+
+## Who it's for
+
+- Anyone who runs many Claude Code sessions in parallel and loses track of them.
+- People who organize sessions into sections and want archiving that respects that order.
+- Teams and solo builders who want a calm sidebar without the fear of deleting something they might need.
+
+## Safe by design
+
+- It only archives, restores and moves sessions into sidebar sections. It never deletes a session.
+- It reads your session list on your own computer. Nothing is sent anywhere else.
+- Free and open source under the MIT license.
 
 ## Install
 
@@ -24,6 +51,8 @@ claude plugin install session-manager --marketplace SaudGandeh/session-archive-m
 ```
 
 In the desktop app: click + next to the prompt box, then Plugins, Add marketplace with `SaudGandeh/session-archive-manager-mod`, then Add plugin.
+
+Then type `/sessions` to open the pane.
 
 ## Let Apply work in auto mode
 
