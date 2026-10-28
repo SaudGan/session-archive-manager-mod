@@ -1,62 +1,69 @@
-# Session Archive Manager
+<div align="center">
 
-**Your Claude Code sessions, finally under control.**
+<img src="assets/banner.svg" alt="Session Archive Manager: archive and restore your Claude Code sessions with one toggle" width="100%">
 
-Run Claude Code for a few weeks and your sidebar fills up. Finished tasks sit next to live ones, old experiments bury the work you need, and you can't tell at a glance which session still needs you. Session Archive Manager fixes that with one pane and one command.
+# 🗂️ Session Archive Manager
 
-Type `/sessions` and see every session you have, archived ones included, grouped exactly like your sidebar. Flip a toggle, press **Apply**, and the sessions are archived or brought back. Nothing is ever deleted.
+**Archive and restore your Claude Code sessions with one toggle. Nothing is ever deleted.**
 
-## What you get
+[![Release](https://img.shields.io/github/v/release/SaudGan/session-archive-manager-mod?style=flat-square&color=D97757&label=release)](https://github.com/SaudGan/session-archive-manager-mod/releases/latest)
+[![License: MIT](https://img.shields.io/github/license/SaudGan/session-archive-manager-mod?style=flat-square&color=blue)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/SaudGan/session-archive-manager-mod?style=flat-square&color=F0A63C)](https://github.com/SaudGan/session-archive-manager-mod/stargazers)
+[![Claude Code mod](https://img.shields.io/badge/Claude_Code-mod-D97757?style=flat-square)](#-install)
+[![Tests](https://img.shields.io/badge/tests-14_passing-2ea44f?style=flat-square)](tests/session-manager.test.tsx)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-8A63D2?style=flat-square)](CONTRIBUTING.md)
 
-- **One list for every session.** Active and archived, in the same sections you already use. Open a section to see what's inside, close it to keep things tidy.
-- **A toggle on every row.** ON means the session is shown in your sidebar. OFF means it's archived. One press of **Apply** makes all your changes at once.
-- **Archived sessions stay in their section.** Archive a session now and you'll still find it under the right heading, ready to bring back whenever you want.
-- **Restore to where it belongs.** A restored session goes back into its original sidebar section, not into a pile of ungrouped sessions.
-- **Color-coded status.** **Needs you** (red), **Done** (green) or **Not reviewed** (gray), so you can tell at a glance what still needs your attention and what has served its purpose.
-- **Claude fills in the statuses.** The mod adds a `set_session_status` tool. Ask Claude to review your sessions and it can mark each one for you.
-- **Newest first.** Inside every section, your most recent sessions come first.
+**[Install](#-install) · [Features](#-features) · [How to use it](#-how-to-use-it) · [FAQ](#-faq) · [Contributing](#-contributing)**
 
-## How it fits your workflow
+</div>
 
-1. **Work as usual.** Start as many sessions as you like, for different projects or ideas.
-2. **Run a review.** Ask Claude to look through your sessions and mark which are done and which still need you.
-3. **Open `/sessions`.** Your sections are listed, with status colors showing where to look first.
-4. **Clean up in seconds.** Turn OFF everything that's finished, then press **Apply**. Your sidebar is clear, and nothing is lost.
-5. **Need one back?** Turn it ON and press **Apply**. It returns to its original section.
+---
 
-## Who it's for
+<p align="center">
+  <img src="assets/preview.svg" alt="The /sessions pane: sessions grouped by section, each with a color-coded status and an ON/OFF toggle" width="100%">
+</p>
 
-- Anyone who runs many Claude Code sessions in parallel and loses track of them.
-- People who organize sessions into sections and want archiving that respects that order.
-- Teams and solo builders who want a calm sidebar without the fear of deleting something they might need.
+Run Claude Code for a few weeks and your sidebar fills up. Finished tasks sit next to live ones, and once you archive a session there is no list to find it again.
 
-## Safe by design
+Type **`/sessions`** and get one calm pane with every session you have, archived ones included, grouped exactly like your sidebar. Flip a toggle, press **Apply**, done.
 
-- It only archives, restores and moves sessions into sidebar sections. It never deletes a session.
-- It reads your session list on your own computer. Nothing is sent anywhere else.
-- Free and open source under the MIT license.
+## 🔁 Before and after
 
-## Install
+| 😩 Without it | 😌 With Session Archive Manager |
+|---|---|
+| Archived sessions disappear from view | 📋 Every session in one list, archived ones too |
+| You archive sessions one at a time | 🔘 Flip several toggles, press **Apply** once |
+| A restored session lands outside its section | 📁 It goes back into its original section |
+| You can't tell what is finished | 🚦 Each session shows **Needs you**, **Done** or **Not reviewed** |
+| One wrong click and a session is gone | 🛡️ It only archives and restores, it never deletes |
 
-At the prompt of a terminal session:
+## 🚀 Install
 
-```
-/plugin install session-manager --marketplace SaudGandeh/session-archive-manager-mod
-```
+You need the **Claude desktop app** with its **Code** tab. The mod uses the app's own session list.
 
-From a shell:
+**From a terminal** (macOS Terminal, or any shell):
 
-```
-claude plugin install session-manager --marketplace SaudGandeh/session-archive-manager-mod
+```bash
+claude plugin marketplace add SaudGan/session-archive-manager-mod
+claude plugin install session-manager@session-archive-manager-mod
 ```
 
-In the desktop app: click + next to the prompt box, then Plugins, Add marketplace with `SaudGandeh/session-archive-manager-mod`, then Add plugin.
+Then open a new session in the Code tab and type **`/sessions`**. 🎉
 
-Then type `/sessions` to open the pane.
+<details>
+<summary><strong>Prefer the prompt box of a Claude Code session?</strong></summary>
 
-## Let Apply work in auto mode
+```
+/plugin marketplace add SaudGan/session-archive-manager-mod
+/plugin install session-manager@session-archive-manager-mod
+```
 
-In auto mode, Claude Code's safety check refuses actions that you didn't ask for in the chat, and a button press doesn't count. To let Apply work, add these three rules to `permissions.allow` in `~/.claude/settings.json`:
+</details>
+
+<details>
+<summary><strong>🔐 Let Apply work in auto mode</strong></summary>
+
+In auto mode, Claude Code's safety check refuses actions you didn't ask for in the chat, and a button press doesn't count. To let **Apply** work, add these three rules to `permissions.allow` in `~/.claude/settings.json`:
 
 ```json
 "mcp__ccd_session_mgmt__archive_session",
@@ -64,8 +71,89 @@ In auto mode, Claude Code's safety check refuses actions that you didn't ask for
 "mcp__ccd_sidebar__move_sessions"
 ```
 
-They allow archiving, restoring and moving sessions into sidebar sections. They never allow deleting. Without them, switch the chat to a mode that asks first, and click Allow on each change.
+They allow archiving, restoring and moving sessions into sidebar sections. They never allow deleting. Without them, use a mode that asks first and click **Allow** on each change.
 
-## License
+</details>
 
-MIT
+## ✨ Features
+
+- 📋 **One list for every session.** Active and archived, in the same sections you already use.
+- 📂 **Folding sections.** Open a section to see what's inside, close it to keep things tidy. Each heading shows how many sessions it holds.
+- 🔘 **A toggle on every row.** **ON** means the session shows in your sidebar. **OFF** means it's archived.
+- ✅ **One Apply for everything.** Flip as many toggles as you like. **Apply (n)** tells you how many changes are waiting.
+- 📁 **Sections are remembered.** An archived session stays under its heading, and a restored one goes back into it.
+- 🚦 **Color-coded status.** 🔴 **Needs you**, 🟢 **Done** and ⚪ **Not reviewed** show where to look first.
+- 🤖 **Claude fills in the statuses.** The mod gives Claude a `set_session_status` tool, so it can review your sessions for you.
+- 🕒 **Newest first.** Inside every section, your most recent sessions come first.
+- 💬 **Clear messages.** If a change doesn't go through, the pane names the session and the reason.
+
+## 🧭 How to use it
+
+1. **Work as usual.** Start as many sessions as you like.
+2. **Ask Claude for a review.** For example: *"Review my sessions and mark each one as done or needs me."*
+3. **Type `/sessions`.** Your sections appear, with colors showing where to look first.
+4. **Clean up in seconds.** Turn **OFF** everything that's finished, then press **Apply**.
+5. **Need one back?** Turn it **ON** and press **Apply**. It returns to its original section.
+
+## 🛡️ Safe by design
+
+- 🚫 It never deletes a session. It only archives, restores and moves sessions into sidebar sections.
+- 💻 It reads your session list on your own computer. Nothing is sent anywhere else.
+- 🔓 It is free and open source under the MIT license, so you can read every line.
+
+## ❓ FAQ
+
+<details>
+<summary><strong>Where do my archived sessions go?</strong></summary>
+
+They stay in the Claude desktop app, hidden from the sidebar. Type `/sessions` to see them under their original section, and turn one **ON** to bring it back.
+
+</details>
+
+<details>
+<summary><strong>Apply says a change "did not go through". What now?</strong></summary>
+
+The pane names the session and the reason. A session that is still working can't be archived, so wait for it to finish. In auto mode, add the three allow rules from the install section.
+
+</details>
+
+<details>
+<summary><strong>Does it work in a plain terminal session?</strong></summary>
+
+No. The list comes from the Claude desktop app, so a plain terminal session has no sessions to show.
+
+</details>
+
+<details>
+<summary><strong>How do I update or remove it?</strong></summary>
+
+```bash
+claude plugin marketplace update session-archive-manager-mod
+claude plugin update session-manager@session-archive-manager-mod
+```
+
+To remove it:
+
+```bash
+claude plugin uninstall session-manager@session-archive-manager-mod
+```
+
+</details>
+
+## 🗺️ Ideas for next versions
+
+- 🔎 A search box to find a session by name
+- 🧹 "Archive all Done" in one click
+- 🏷️ Filter the list by status
+
+Want one of these, or something else? [Open an issue](https://github.com/SaudGan/session-archive-manager-mod/issues/new/choose) and say so.
+
+## 🤝 Contributing
+
+Bug reports, ideas and pull requests are all welcome. [CONTRIBUTING.md](CONTRIBUTING.md) shows how to run the mod and its tests on your own computer.
+
+If the mod saves you time, a ⭐ on this repository helps other people find it.
+
+## 📄 License
+
+[MIT](LICENSE) © SaudGandeh
