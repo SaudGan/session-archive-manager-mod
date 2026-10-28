@@ -133,8 +133,17 @@ export const register: Register = on => {
     return { text: 'Session manager opened.' }
   })
 
+  on('ui.message', { component: 'Pane', requestId: PANE }, async ($, e) => {
+    const data = e.data as { toggle?: unknown } | null
+    const id = typeof data?.toggle === 'string' ? data.toggle : ''
+    if (id) await update($, wanted, w => ({ ...w, [id]: !(w[id] ?? true) }))
+    return {}
+  })
+
   on('ui.render', { component: 'Pane', requestId: PANE }, async ($, e) => {
     const { Box, Text, Button } = $.ui.resolve(e)
+    // The pill is a surface module; phones and the editor pane have no Client, so they get a plain button.
+    const Client = e.surface === 'terminal' || e.surface === 'desktop' ? $.ui.resolve(e).Client : undefined
     const list = await read($, rows)
     const want = await read($, wanted)
     const note = await read($, message)
@@ -182,9 +191,13 @@ export const register: Register = on => {
                     <Text weight="medium">{r.title}</Text>
                     <Text color={COLOR[r.status]} size="footnote">{LABEL[r.status]}</Text>
                   </Box>
-                  <Button key={'t-' + r.id} variant={shown ? 'primary' : 'secondary'} onPress={() => void update($, wanted, w => ({ ...w, [r.id]: !shown }))}>
-                    {shown ? 'ON  ●' : '●  OFF'}
-                  </Button>
+                  {Client ? (
+                    <Client key={'t-' + r.id} module="./toggle.tsx" props={{ id: r.id, on: shown }} />
+                  ) : (
+                    <Button key={'t-' + r.id} variant={shown ? 'primary' : 'secondary'} onPress={() => void update($, wanted, w => ({ ...w, [r.id]: !shown }))}>
+                      {shown ? 'ON  ●' : '●  OFF'}
+                    </Button>
+                  )}
                 </Box>
               )}
             </Box>
