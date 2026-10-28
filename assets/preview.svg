@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="The /sessions pane: sessions grouped by section, each with a color-coded status and an ON/OFF toggle, plus an Apply button">
+  <rect width="1280" height="800" rx="24" fill="#191817"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <rect x="60" y="56" width="720" height="696" rx="16" fill="#262624" stroke="#3a3a37"/>
+    <text x="84" y="94" font-size="18" font-weight="600" fill="#ECEAE4">Session manager</text>
+    <line x1="60" y1="114" x2="780" y2="114" stroke="#3a3a37"/>
+    <rect x="84" y="134" width="140" height="40" rx="8" fill="#D97757"/>
+    <text x="154" y="160" font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">Apply (2)</text>
+    <rect x="236" y="134" width="110" height="40" rx="8" fill="#30302e" stroke="#55544f"/>
+    <text x="291" y="160" font-size="16" fill="#ECEAE4" text-anchor="middle">Refresh</text>
+    <text x="84" y="206" font-size="15" fill="#9a9893">6 sessions. Toggle, then press Apply.</text>
+
+    <text x="84" y="250" font-size="17" font-weight="600" fill="#ECEAE4">▾  Client Work  (3)</text>
+    <g>
+      <rect x="84" y="266" width="672" height="62" rx="10" fill="#2e2e2b"/>
+      <text x="104" y="292" font-size="16" fill="#ECEAE4">Website launch</text>
+      <text x="104" y="315" font-size="14" fill="#F0605A">Needs you</text>
+      <rect x="636" y="280" width="104" height="34" rx="17" fill="#D97757"/>
+      <text x="688" y="302" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">ON  ●</text>
+    </g>
+    <g>
+      <rect x="84" y="336" width="672" height="62" rx="10" fill="#2e2e2b"/>
+      <text x="104" y="362" font-size="16" fill="#ECEAE4">Brand colors</text>
+      <text x="104" y="385" font-size="14" fill="#3FB950">Done</text>
+      <rect x="636" y="350" width="104" height="34" rx="17" fill="#3a3a37" stroke="#5c5b56"/>
+      <text x="688" y="372" font-size="14" font-weight="600" fill="#c4c2bc" text-anchor="middle">●  OFF</text>
+    </g>
+    <g>
+      <rect x="84" y="406" width="672" height="62" rx="10" fill="#2e2e2b"/>
+      <text x="104" y="432" font-size="16" fill="#ECEAE4">Pricing page</text>
+      <text x="104" y="455" font-size="14" fill="#8f8d87">Not reviewed</text>
+      <rect x="636" y="420" width="104" height="34" rx="17" fill="#D97757"/>
+      <text x="688" y="442" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">ON  ●</text>
+    </g>
+
+    <text x="84" y="510" font-size="17" font-weight="600" fill="#ECEAE4">▾  Research  (2)</text>
+    <g>
+      <rect x="84" y="526" width="672" height="62" rx="10" fill="#2e2e2b"/>
+      <text x="104" y="552" font-size="16" fill="#ECEAE4">Competitor teardown</text>
+      <text x="104" y="575" font-size="14" fill="#3FB950">Done</text>
+      <rect x="636" y="540" width="104" height="34" rx="17" fill="#3a3a37" stroke="#5c5b56"/>
+      <text x="688" y="562" font-size="14" font-weight="600" fill="#c4c2bc" text-anchor="middle">●  OFF</text>
+    </g>
+    <g>
+      <rect x="84" y="596" width="672" height="62" rx="10" fill="#2e2e2b"/>
+      <text x="104" y="622" font-size="16" fill="#ECEAE4">Market notes</text>
+      <text x="104" y="645" font-size="14" fill="#F0605A">Needs you</text>
+      <rect x="636" y="610" width="104" height="34" rx="17" fill="#D97757"/>
+      <text x="688" y="632" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">ON  ●</text>
+    </g>
+
+    <text x="84" y="706" font-size="17" font-weight="600" fill="#ECEAE4">▸  No section  (1)</text>
+
+    <g font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">
+      <circle cx="244" cy="88" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
+      <text x="244" y="93">1</text>
+      <circle cx="740" cy="350" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
+      <text x="740" y="355">2</text>
+      <circle cx="224" cy="134" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
+      <text x="224" y="139">3</text>
+    </g>
+
+    <text x="840" y="112" font-size="28" font-weight="800" fill="#FFF7F0">How it works</text>
+    <g>
+      <circle cx="858" cy="170" r="18" fill="#D97757"/>
+      <text x="858" y="176" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+      <text x="890" y="168" font-size="20" font-weight="700" fill="#FFF7F0">Type /sessions</text>
+      <text x="890" y="196" font-size="16" fill="#cfc6bd">Every session, archived ones too,</text>
+      <text x="890" y="218" font-size="16" fill="#cfc6bd">grouped like your sidebar.</text>
+    </g>
+    <g>
+      <circle cx="858" cy="284" r="18" fill="#D97757"/>
+      <text x="858" y="290" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+      <text x="890" y="282" font-size="20" font-weight="700" fill="#FFF7F0">Flip a toggle</text>
+      <text x="890" y="310" font-size="16" fill="#cfc6bd">OFF archives a session.</text>
+      <text x="890" y="332" font-size="16" fill="#cfc6bd">ON brings it back to its section.</text>
+    </g>
+    <g>
+      <circle cx="858" cy="398" r="18" fill="#D97757"/>
+      <text x="858" y="404" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+      <text x="890" y="396" font-size="20" font-weight="700" fill="#FFF7F0">Press Apply</text>
+      <text x="890" y="424" font-size="16" fill="#cfc6bd">All your changes at once.</text>
+      <text x="890" y="446" font-size="16" fill="#cfc6bd">Nothing is ever deleted.</text>
+    </g>
+    <rect x="840" y="500" width="380" height="152" rx="14" fill="#232220" stroke="#3a3a37"/>
+    <text x="862" y="534" font-size="15" font-weight="700" letter-spacing="2" fill="#D97757">STATUS COLORS</text>
+    <circle cx="870" cy="566" r="7" fill="#F0605A"/>
+    <text x="888" y="572" font-size="17" fill="#ECEAE4">Needs you</text>
+    <circle cx="870" cy="598" r="7" fill="#3FB950"/>
+    <text x="888" y="604" font-size="17" fill="#ECEAE4">Done</text>
+    <circle cx="870" cy="630" r="7" fill="#8f8d87"/>
+    <text x="888" y="636" font-size="17" fill="#ECEAE4">Not reviewed</text>
+    <text x="840" y="712" font-size="14" fill="#8f8d87">Sample sessions shown.</text>
+  </g>
+</svg>
