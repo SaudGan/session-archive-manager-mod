@@ -79,11 +79,13 @@ They allow archiving, restoring and moving sessions into sidebar sections. They 
 
 - 📋 **One list for every session.** Active and archived, in the same sections you already use.
 - 📂 **Folding sections.** Open a section to see what's inside, close it to keep things tidy. Each heading shows how many sessions it holds.
-- 🔘 **A toggle on every row.** **ON** means the session shows in your sidebar. **OFF** means it's archived.
+- 🔘 **A Claude-style switch on every row.** **ON** means the session shows in your sidebar. **OFF** means it's archived.
 - ✅ **One Apply for everything.** Flip as many toggles as you like. **Apply (n)** tells you how many changes are waiting.
 - 📁 **Sections are remembered.** An archived session stays under its heading, and a restored one goes back into it.
 - 🚦 **Color-coded status.** 🔴 **Needs you**, 🟢 **Done** and ⚪ **Not reviewed** show where to look first.
 - 🤖 **Claude fills in the statuses.** The mod gives Claude a `set_session_status` tool, so it can review your sessions for you.
+- 📱 **Remote Control sessions too.** Sessions on claude.ai or your phone get their own **Remote Control** section, with online or offline.
+- 🔒 **Your current session is safe.** It shows as "This session" with no switch, so you can't archive the session you are in.
 - 🕒 **Newest first.** Inside every section, your most recent sessions come first.
 - 💬 **Clear messages.** If a change doesn't go through, the pane names the session and the reason.
 
