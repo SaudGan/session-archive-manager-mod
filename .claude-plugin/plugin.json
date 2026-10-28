@@ -1,1 +1,11 @@
-{ "name": "session-manager", "version": "0.1.0", "description": "A pane listing every session with a status and a show/archive toggle, applied with one button", "types": "./types/index.d.ts" }
+{
+  "name": "session-manager",
+  "version": "0.1.0",
+  "description": "Archive and restore Claude Code sessions with one toggle, grouped like your sidebar. Never deletes anything.",
+  "author": { "name": "SaudGandeh", "url": "https://github.com/SaudGan" },
+  "homepage": "https://github.com/SaudGan/session-archive-manager-mod",
+  "repository": "https://github.com/SaudGan/session-archive-manager-mod",
+  "license": "MIT",
+  "keywords": ["sessions", "archive", "restore", "sidebar", "productivity"],
+  "types": "./types/index.d.ts"
+}
