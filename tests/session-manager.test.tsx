@@ -65,8 +65,23 @@ function wire(on: any, w: ReturnType<typeof world>) {
   })
 }
 
-async function pill(ui: any, id: string) {
-  return (await ui.findAll({ type: 'Text', in: 't-' + id })).map((t: any) => t.text).join('')
+const TITLES: Record<string, string> = { s1: 'Website build', s2: 'Brand colors', s3: 'Old teardown', s4: 'Loose idea' }
+
+// The terminal draws the switch from text; the desktop draws it as a picture whose alt says its state.
+async function pill(ui: any, id: string, surface: string) {
+  if (surface === 'terminal') return (await ui.findAll({ type: 'Text', in: 't-' + id })).map((t: any) => t.text).join('')
+  const pic = (await ui.findAll({ type: 'Svg' })).find((x: any) => String(x.props.alt).startsWith(TITLES[id] + ':'))
+  return pic ? (String(pic.props.alt).endsWith(': On') ? 'ON  ●' : '●  OFF') : ''
+}
+
+async function applyLabel(ui: any, surface: string) {
+  if (surface === 'terminal') return (await ui.find({ key: 'apply' }))?.text
+  return (await ui.findAll({ type: 'Svg' })).map((x: any) => String(x.props.alt)).find((a: string) => a.startsWith('Apply'))
+}
+
+async function pressApply(ui: any, surface: string) {
+  if (surface === 'terminal') await ui.press({ key: 'apply' })
+  else await ui.post({ toggle: '__apply__' }, { in: 'apply' })
 }
 
 async function flip(ui: any, id: string) {
@@ -89,10 +104,10 @@ for (const surface of ['terminal', 'desktop'] as const) {
     expect(w.calls.some(c => c.tool === LIST && c.input.include_archived === true)).toBe(true)
     expect((await ui.find({ key: 'g-Client Work' }))?.text).toMatch(/Client Work {2}\(2\)/)
     expect((await ui.find({ key: 'g-Research' }))?.text).toMatch(/Research {2}\(1\)/)
-    expect((await ui.find({ key: 'g-No section' }))?.text).toMatch(/No section {2}\(1\)/)
+    expect((await ui.find({ key: 'g-This Computer' }))?.text).toMatch(/This Computer {2}\(1\)/)
     expect(await ui.find({ key: 't-s1' })).toBeUndefined()
-    const headers = (await ui.findAll({ type: 'Button' })).map(b => b.text).filter(t => /\(\d+\)/.test(t ?? ''))
-    expect(headers[headers.length - 1]).toMatch(/No section/)
+    const headers = (await ui.findAll({ type: 'Button' })).map((b: any) => b.text).filter((t: any) => /\(\d+\)/.test(t ?? ''))
+    expect(headers[headers.length - 1]).toMatch(/This Computer/)
     await ui.unmount()
   })
 
@@ -102,9 +117,9 @@ for (const surface of ['terminal', 'desktop'] as const) {
     const { ui } = await openPane($, surface)
     await ui.press({ key: 'g-Client Work' })
     await ui.press({ key: 'g-Research' })
-    expect(await pill(ui, 's1')).toBe('ON  ●')
-    expect(await pill(ui, 's3')).toBe('●  OFF')
-    const titles = (await ui.findAll({ type: 'Text' })).map(t => t.text)
+    expect(await pill(ui, 's1', surface)).toBe('ON  ●')
+    expect(await pill(ui, 's3', surface)).toBe('●  OFF')
+    const titles = (await ui.findAll({ type: 'Text' })).map((t: any) => t.text)
     expect(titles.indexOf('Brand colors')).toBeLessThan(titles.indexOf('Website build'))
     expect(titles).toContain('Not reviewed')
     await ui.unmount()
@@ -117,7 +132,7 @@ for (const surface of ['terminal', 'desktop'] as const) {
     await $.tool.call({ tool: STATUS, session_id: 's1', status: 'done' } as any)
     await $.tool.call({ tool: STATUS, session_id: 's2', status: 'attention' } as any)
     await ui.press({ key: 'g-Client Work' })
-    const texts = (await ui.findAll({ type: 'Text' })).map(t => t.text)
+    const texts = (await ui.findAll({ type: 'Text' })).map((t: any) => t.text)
     expect(texts).toContain('Done')
     expect(texts).toContain('Needs you')
     expect((w.store.statuses as any).s1).toBe('done')
@@ -132,8 +147,8 @@ for (const surface of ['terminal', 'desktop'] as const) {
     await ui.press({ key: 'g-Research' })
     await ui.pointer({ type: 'up', x: 2, y: 0, button: 'left', in: 't-s1' })
     await flip(ui, 's3')
-    expect((await ui.find({ key: 'apply' }))?.text).toBe('Apply (2)')
-    await ui.press({ key: 'apply' })
+    expect((await applyLabel(ui, surface))).toBe('Apply (2)')
+    await pressApply(ui, surface)
     const archive = w.calls.find(c => c.tool === ARCHIVE)
     const unarchive = w.calls.find(c => c.tool === UNARCHIVE)
     const move = w.calls.find(c => c.tool === MOVE)
@@ -143,9 +158,9 @@ for (const surface of ['terminal', 'desktop'] as const) {
     expect(move?.input.session_ids).toEqual(['s3'])
     expect(move?.input.group_id).toBe('g-r')
     expect(w.calls.some(c => c.tool === 'mcp__ccd_session_mgmt__delete_session')).toBe(false)
-    expect(await pill(ui, 's1')).toBe('●  OFF')
-    expect(await pill(ui, 's3')).toBe('ON  ●')
-    expect((await ui.find({ key: 'apply' }))?.text).toBe('Apply (0)')
+    expect(await pill(ui, 's1', surface)).toBe('●  OFF')
+    expect(await pill(ui, 's3', surface)).toBe('ON  ●')
+    expect((await applyLabel(ui, surface))).toBe('Apply (0)')
     await ui.unmount()
   })
 
@@ -156,11 +171,11 @@ for (const surface of ['terminal', 'desktop'] as const) {
     const { ui } = await openPane($, surface)
     await ui.press({ key: 'g-Research' })
     await flip(ui, 's3')
-    await ui.press({ key: 'apply' })
+    await pressApply(ui, surface)
     expect((await ui.find({ key: 'g-Research' }))?.text).toMatch(/\(1\)/)
-    expect(await pill(ui, 's3')).toBe('●  OFF')
-    expect(await ui.find({ key: 'g-No section' })).toBeDefined()
-    expect((await ui.find({ key: 'g-No section' }))?.text).toMatch(/\(1\)/)
+    expect(await pill(ui, 's3', surface)).toBe('●  OFF')
+    expect(await ui.find({ key: 'g-This Computer' })).toBeDefined()
+    expect((await ui.find({ key: 'g-This Computer' }))?.text).toMatch(/\(1\)/)
     await ui.unmount()
   })
 
@@ -171,11 +186,11 @@ for (const surface of ['terminal', 'desktop'] as const) {
     await ui.press({ key: 'g-Client Work' })
     await flip(ui, 's1')
     await flip(ui, 's2')
-    await ui.press({ key: 'apply' })
+    await pressApply(ui, surface)
     // Newest first: s2 is tried first, hits the classifier hiccup, is retried once, then is refused.
     expect(w.calls.filter(c => c.tool === ARCHIVE && c.input.session_id === 's2')).toHaveLength(2)
     expect(w.calls.filter(c => c.tool === ARCHIVE && c.input.session_id === 's1')).toHaveLength(1)
-    const note = (await ui.findAll({ type: 'Text' })).map(t => t.text).find(t => /Did not go through/.test(t ?? ''))
+    const note = (await ui.findAll({ type: 'Text' })).map((t: any) => t.text).find((t: any) => /Did not go through/.test(t ?? ''))
     expect(note).toMatch(/Brand colors/)
     expect(note).not.toMatch(/Website build/)
     await ui.unmount()
@@ -185,7 +200,7 @@ for (const surface of ['terminal', 'desktop'] as const) {
     const w = world()
     wire(on, w)
     const { ui } = await openPane($, surface)
-    await ui.press({ key: 'apply' })
+    await pressApply(ui, surface)
     expect(w.calls.some(c => c.tool === ARCHIVE || c.tool === UNARCHIVE)).toBe(false)
     expect((await ui.find({ type: 'Text', text: /Nothing changed/ }))?.text).toMatch(/Flip a toggle first/)
     await ui.unmount()
