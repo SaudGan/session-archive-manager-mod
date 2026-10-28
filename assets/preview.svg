@@ -4,10 +4,10 @@
     <rect x="60" y="56" width="720" height="696" rx="16" fill="#262624" stroke="#3a3a37"/>
     <text x="84" y="94" font-size="18" font-weight="600" fill="#ECEAE4">Session manager</text>
     <line x1="60" y1="114" x2="780" y2="114" stroke="#3a3a37"/>
-    <rect x="84" y="134" width="140" height="40" rx="8" fill="#D97757"/>
-    <text x="154" y="160" font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">Apply (2)</text>
-    <rect x="236" y="134" width="110" height="40" rx="8" fill="#30302e" stroke="#55544f"/>
-    <text x="291" y="160" font-size="16" fill="#ECEAE4" text-anchor="middle">Refresh</text>
+    <rect x="84.5" y="138.5" width="111" height="31" rx="8" fill="#D97757" stroke="#D97757"/>
+    <text x="140" y="159" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">Apply (2)</text>
+    <rect x="208.5" y="138.5" width="111" height="31" rx="8" fill="#30302e" stroke="#55544f"/>
+    <text x="264" y="159" font-size="14" font-weight="600" fill="#c4c2bc" text-anchor="middle">Refresh</text>
     <text x="84" y="206" font-size="15" fill="#9a9893">6 sessions. Toggle, then press Apply.</text>
 
     <text x="84" y="250" font-size="17" font-weight="600" fill="#ECEAE4">▾  Client Work  (3)</text>
@@ -15,22 +15,25 @@
       <rect x="84" y="266" width="672" height="62" rx="10" fill="#2e2e2b"/>
       <text x="104" y="292" font-size="16" fill="#ECEAE4">Website launch</text>
       <text x="104" y="315" font-size="14" fill="#F0605A">Needs you</text>
-      <rect x="636" y="280" width="104" height="34" rx="17" fill="#D97757"/>
-      <text x="688" y="302" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">ON  ●</text>
+      <rect x="664.5" y="283.5" width="75" height="27" rx="13.5" fill="#D97757" stroke="#D97757"/>
+      <circle cx="722" cy="297" r="10" fill="#ffffff"/>
+      <text x="690" y="301.5" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">ON</text>
     </g>
     <g>
       <rect x="84" y="336" width="672" height="62" rx="10" fill="#2e2e2b"/>
       <text x="104" y="362" font-size="16" fill="#ECEAE4">Brand colors</text>
       <text x="104" y="385" font-size="14" fill="#3FB950">Done</text>
-      <rect x="636" y="350" width="104" height="34" rx="17" fill="#3a3a37" stroke="#5c5b56"/>
-      <text x="688" y="372" font-size="14" font-weight="600" fill="#c4c2bc" text-anchor="middle">●  OFF</text>
+      <rect x="664.5" y="353.5" width="75" height="27" rx="13.5" fill="#3a3a37" stroke="#5c5b56"/>
+      <circle cx="682" cy="367" r="10" fill="#c4c2bc"/>
+      <text x="710" y="371.5" font-size="12" font-weight="700" fill="#c4c2bc" text-anchor="middle">OFF</text>
     </g>
     <g>
       <rect x="84" y="406" width="672" height="62" rx="10" fill="#2e2e2b"/>
       <text x="104" y="432" font-size="16" fill="#ECEAE4">Pricing page</text>
       <text x="104" y="455" font-size="14" fill="#8f8d87">Not reviewed</text>
-      <rect x="636" y="420" width="104" height="34" rx="17" fill="#D97757"/>
-      <text x="688" y="442" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">ON  ●</text>
+      <rect x="664.5" y="423.5" width="75" height="27" rx="13.5" fill="#D97757" stroke="#D97757"/>
+      <circle cx="722" cy="437" r="10" fill="#ffffff"/>
+      <text x="690" y="441.5" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">ON</text>
     </g>
 
     <text x="84" y="510" font-size="17" font-weight="600" fill="#ECEAE4">▾  Research  (2)</text>
@@ -38,26 +41,28 @@
       <rect x="84" y="526" width="672" height="62" rx="10" fill="#2e2e2b"/>
       <text x="104" y="552" font-size="16" fill="#ECEAE4">Competitor teardown</text>
       <text x="104" y="575" font-size="14" fill="#3FB950">Done</text>
-      <rect x="636" y="540" width="104" height="34" rx="17" fill="#3a3a37" stroke="#5c5b56"/>
-      <text x="688" y="562" font-size="14" font-weight="600" fill="#c4c2bc" text-anchor="middle">●  OFF</text>
+      <rect x="664.5" y="543.5" width="75" height="27" rx="13.5" fill="#3a3a37" stroke="#5c5b56"/>
+      <circle cx="682" cy="557" r="10" fill="#c4c2bc"/>
+      <text x="710" y="561.5" font-size="12" font-weight="700" fill="#c4c2bc" text-anchor="middle">OFF</text>
     </g>
     <g>
       <rect x="84" y="596" width="672" height="62" rx="10" fill="#2e2e2b"/>
       <text x="104" y="622" font-size="16" fill="#ECEAE4">Market notes</text>
       <text x="104" y="645" font-size="14" fill="#F0605A">Needs you</text>
-      <rect x="636" y="610" width="104" height="34" rx="17" fill="#D97757"/>
-      <text x="688" y="632" font-size="14" font-weight="600" fill="#ffffff" text-anchor="middle">ON  ●</text>
+      <rect x="664.5" y="613.5" width="75" height="27" rx="13.5" fill="#D97757" stroke="#D97757"/>
+      <circle cx="722" cy="627" r="10" fill="#ffffff"/>
+      <text x="690" y="631.5" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">ON</text>
     </g>
 
-    <text x="84" y="706" font-size="17" font-weight="600" fill="#ECEAE4">▸  No section  (1)</text>
+    <text x="84" y="706" font-size="17" font-weight="600" fill="#ECEAE4">▸  This Computer  (1)</text>
 
     <g font-size="15" font-weight="700" fill="#ffffff" text-anchor="middle">
       <circle cx="244" cy="88" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
       <text x="244" y="93">1</text>
-      <circle cx="740" cy="350" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
-      <text x="740" y="355">2</text>
-      <circle cx="224" cy="134" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
-      <text x="224" y="139">3</text>
+      <circle cx="742" cy="353" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
+      <text x="742" y="358">2</text>
+      <circle cx="196" cy="138" r="14" fill="#D97757" stroke="#191817" stroke-width="3"/>
+      <text x="196" y="143">3</text>
     </g>
 
     <text x="840" y="112" font-size="28" font-weight="800" fill="#FFF7F0">How it works</text>
