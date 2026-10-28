@@ -65,6 +65,14 @@ function wire(on: any, w: ReturnType<typeof world>) {
   })
 }
 
+async function pill(ui: any, id: string) {
+  return (await ui.findAll({ type: 'Text', in: 't-' + id })).map((t: any) => t.text).join('')
+}
+
+async function flip(ui: any, id: string) {
+  await ui.post({ toggle: id }, { in: 't-' + id })
+}
+
 async function openPane($: any, surface: 'terminal' | 'desktop') {
   await $.session.start({ cwd: '/', surface: 'desktop', isInteractive: true })
   const ran = await $.command.run({ command: 'sessions', args: '' } as any)
@@ -94,8 +102,8 @@ for (const surface of ['terminal', 'desktop'] as const) {
     const { ui } = await openPane($, surface)
     await ui.press({ key: 'g-Client Work' })
     await ui.press({ key: 'g-Research' })
-    expect((await ui.find({ key: 't-s1' }))?.text).toBe('ON  ●')
-    expect((await ui.find({ key: 't-s3' }))?.text).toBe('●  OFF')
+    expect(await pill(ui, 's1')).toBe('ON  ●')
+    expect(await pill(ui, 's3')).toBe('●  OFF')
     const titles = (await ui.findAll({ type: 'Text' })).map(t => t.text)
     expect(titles.indexOf('Brand colors')).toBeLessThan(titles.indexOf('Website build'))
     expect(titles).toContain('Not reviewed')
@@ -122,8 +130,8 @@ for (const surface of ['terminal', 'desktop'] as const) {
     const { ui } = await openPane($, surface)
     await ui.press({ key: 'g-Client Work' })
     await ui.press({ key: 'g-Research' })
-    await ui.press({ key: 't-s1' })
-    await ui.press({ key: 't-s3' })
+    await ui.pointer({ type: 'up', x: 2, y: 0, button: 'left', in: 't-s1' })
+    await flip(ui, 's3')
     expect((await ui.find({ key: 'apply' }))?.text).toBe('Apply (2)')
     await ui.press({ key: 'apply' })
     const archive = w.calls.find(c => c.tool === ARCHIVE)
@@ -135,8 +143,8 @@ for (const surface of ['terminal', 'desktop'] as const) {
     expect(move?.input.session_ids).toEqual(['s3'])
     expect(move?.input.group_id).toBe('g-r')
     expect(w.calls.some(c => c.tool === 'mcp__ccd_session_mgmt__delete_session')).toBe(false)
-    expect((await ui.find({ key: 't-s1' }))?.text).toBe('●  OFF')
-    expect((await ui.find({ key: 't-s3' }))?.text).toBe('ON  ●')
+    expect(await pill(ui, 's1')).toBe('●  OFF')
+    expect(await pill(ui, 's3')).toBe('ON  ●')
     expect((await ui.find({ key: 'apply' }))?.text).toBe('Apply (0)')
     await ui.unmount()
   })
@@ -147,10 +155,10 @@ for (const surface of ['terminal', 'desktop'] as const) {
     wire(on, w)
     const { ui } = await openPane($, surface)
     await ui.press({ key: 'g-Research' })
-    await ui.press({ key: 't-s3' })
+    await flip(ui, 's3')
     await ui.press({ key: 'apply' })
     expect((await ui.find({ key: 'g-Research' }))?.text).toMatch(/\(1\)/)
-    expect((await ui.find({ key: 't-s3' }))?.text).toBe('●  OFF')
+    expect(await pill(ui, 's3')).toBe('●  OFF')
     expect(await ui.find({ key: 'g-No section' })).toBeDefined()
     expect((await ui.find({ key: 'g-No section' }))?.text).toMatch(/\(1\)/)
     await ui.unmount()
@@ -161,8 +169,8 @@ for (const surface of ['terminal', 'desktop'] as const) {
     wire(on, w)
     const { ui } = await openPane($, surface)
     await ui.press({ key: 'g-Client Work' })
-    await ui.press({ key: 't-s1' })
-    await ui.press({ key: 't-s2' })
+    await flip(ui, 's1')
+    await flip(ui, 's2')
     await ui.press({ key: 'apply' })
     // Newest first: s2 is tried first, hits the classifier hiccup, is retried once, then is refused.
     expect(w.calls.filter(c => c.tool === ARCHIVE && c.input.session_id === 's2')).toHaveLength(2)
