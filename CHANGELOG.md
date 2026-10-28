@@ -2,6 +2,12 @@
 
 All notable changes to this project are listed here.
 
+## [0.2.0] - 2026-10-28
+
+### Changed
+
+- 🔘 The ON/OFF toggle is now a real pill, drawn by the mod itself: a filled orange pill with white "ON ●" when a session is shown, a dim gray pill with "● OFF" when it is archived, just like the preview picture. It brightens under the mouse, and one click flips it.
+
 ## [0.1.1] - 2026-10-28
 
 ### Changed
@@ -20,5 +26,6 @@ All notable changes to this project are listed here.
 - 🤖 A `set_session_status` tool so Claude can mark each session.
 - ✅ 14 automated tests covering the pane in the terminal and desktop surfaces.
 
+[0.2.0]: https://github.com/SaudGan/session-archive-manager-mod/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/SaudGan/session-archive-manager-mod/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/SaudGan/session-archive-manager-mod/releases/tag/v0.1.0
