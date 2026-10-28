@@ -16,7 +16,7 @@ const message = atom({ plugin: 'session-manager', key: 'message' } as const, '',
 const MOVE = 'mcp__ccd_sidebar__move_sessions'
 
 const rank = (g: string) => (g === 'No section' ? 1 : 0)
-const COLOR: Record<Status, string> = { attention: 'red', done: 'green', new: 'gray' }
+const COLOR: Record<Status, string> = { attention: 'error', done: 'success', new: 'inactive' }
 const LABEL: Record<Status, string> = { attention: 'Needs you', done: 'Done', new: 'Not reviewed' }
 
 type Raw = { sessionId: string; lastActivityAt?: string; title?: string; isArchived?: boolean; group?: { id?: string; name?: string } | null }
@@ -142,30 +142,45 @@ export const register: Register = on => {
     const pending = list.filter(r => want[r.id] === r.isArchived).length
 
     return (
-      <Box flexDirection="column">
+      <Box flexDirection="column" paddingX={1} paddingY={1}>
         <Box flexDirection="row" gap={1}>
           <Button key="apply" variant="primary" onPress={() => void apply($)}>{`Apply (${pending})`}</Button>
-          <Button key="refresh" onPress={() => void refresh($)}>Refresh</Button>
+          <Button key="refresh" variant="secondary" onPress={() => void refresh($)}>Refresh</Button>
         </Box>
-        <Text dimColor>{note || 'Press Refresh to load your sessions.'}</Text>
+        <Box marginTop={1}>
+          <Text dimColor size="footnote">{note || 'Press Refresh to load your sessions.'}</Text>
+        </Box>
         {list.map((r, i) => {
           const shown = want[r.id] ?? !r.isArchived
           const isFirst = i === 0 || list[i - 1]!.group !== r.group
           const expanded = isOpen[r.group] === true
+          const count = list.filter(x => x.group === r.group).length
           return (
             <Box key={r.id} flexDirection="column">
               {isFirst && (
-                <Box flexDirection="row" marginTop={1}>
+                <Box flexDirection="row" marginTop={1} marginBottom={expanded ? 1 : 0}>
                   <Button key={'g-' + r.group} plain onPress={() => void update($, open, o => ({ ...o, [r.group]: !expanded }))}>
-                    {(expanded ? '▾  ' : '▸  ') + r.group + '  (' + list.filter(x => x.group === r.group).length + ')'}
+                    {(expanded ? '▾  ' : '▸  ') + r.group + '  (' + count + ')'}
                   </Button>
                 </Box>
               )}
               {expanded && (
-                <Box flexDirection="row" justifyContent="space-between">
+                <Box
+                  key={'row-' + r.id}
+                  flexDirection="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  gap={1}
+                  paddingX={1}
+                  marginBottom={1}
+                  borderStyle="round"
+                  borderColor="subtle"
+                  borderDimColor
+                  hover={{ borderColor: 'claude', borderDimColor: false }}
+                >
                   <Box flexDirection="column">
-                    <Text>{r.title}</Text>
-                    <Text color={COLOR[r.status]}>{LABEL[r.status]}</Text>
+                    <Text weight="medium">{r.title}</Text>
+                    <Text color={COLOR[r.status]} size="footnote">{LABEL[r.status]}</Text>
                   </Box>
                   <Button key={'t-' + r.id} variant={shown ? 'primary' : 'secondary'} onPress={() => void update($, wanted, w => ({ ...w, [r.id]: !shown }))}>
                     {shown ? 'ON  ●' : '●  OFF'}
