@@ -1,5 +1,5 @@
 export type Status = 'attention' | 'done' | 'new'
-export type Row = { id: string; title: string; group: string; isArchived: boolean; status: Status; at: string }
+export type Row = { id: string; title: string; group: string; isArchived: boolean; status: Status; at: string; rc?: boolean; self?: boolean; remote?: string }
 
 declare module 'claude-code' {
   interface PluginState {
@@ -7,6 +7,7 @@ declare module 'claude-code' {
       rows: Shaped<Row[]>
       wanted: Shaped<Record<string, boolean>>
       message: Shaped<string>
+      hot: Shaped<string>
       open: Shaped<Record<string, boolean>>
     }
   }
