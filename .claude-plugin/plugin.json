@@ -1,0 +1,1 @@
+{ "name": "session-manager", "version": "0.1.0", "description": "A pane listing every session with a status and a show/archive toggle, applied with one button", "types": "./types/index.d.ts" }
