@@ -2,6 +2,13 @@
 
 All notable changes to this project are listed here.
 
+## [0.1.1] - 2026-10-28
+
+### Changed
+
+- 🎨 The pane now looks like the pictures on this page: each session sits in its own rounded card, with its title in medium weight and a small colored status under it, and the toggle pill on the right. Cards light up when you hover over them.
+- 🎨 Status colors follow your Claude theme (error red, success green, inactive gray) instead of fixed terminal colors.
+
 ## [0.1.0] - 2026-10-28
 
 ### Added
@@ -13,4 +20,5 @@ All notable changes to this project are listed here.
 - 🤖 A `set_session_status` tool so Claude can mark each session.
 - ✅ 14 automated tests covering the pane in the terminal and desktop surfaces.
 
+[0.1.1]: https://github.com/SaudGan/session-archive-manager-mod/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/SaudGan/session-archive-manager-mod/releases/tag/v0.1.0
