@@ -2,6 +2,12 @@
 
 All notable changes to this project are listed here.
 
+## [1.0.0] - 2026-11-04
+
+### Added
+
+- ✨ **Rename & sort.** A new button next to Refresh. Claude reads the start of each session that sits in no section and suggests a clearer name and a section, or a new section if none fits. Every suggestion shows on its card with a **Skip** button, and nothing changes until you press **Apply**. Sessions already in a section, archived ones, pinned ones and sessions started by another session are never touched.
+
 ## [0.3.0] - 2026-10-28
 
 ### Changed
