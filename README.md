@@ -10,7 +10,7 @@
 [![License: MIT](https://img.shields.io/github/license/SaudGan/session-archive-manager-mod?style=flat-square&color=blue)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/SaudGan/session-archive-manager-mod?style=flat-square&color=F0A63C)](https://github.com/SaudGan/session-archive-manager-mod/stargazers)
 [![Claude Code mod](https://img.shields.io/badge/Claude_Code-mod-D97757?style=flat-square)](#-install)
-[![Tests](https://img.shields.io/badge/tests-14_passing-2ea44f?style=flat-square)](tests/session-manager.test.tsx)
+[![Tests](https://img.shields.io/badge/tests-16_passing-2ea44f?style=flat-square)](tests/session-manager.test.tsx)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-8A63D2?style=flat-square)](CONTRIBUTING.md)
 
 **[Install](#-install) · [Features](#-features) · [How to use it](#-how-to-use-it) · [FAQ](#-faq) · [Contributing](#-contributing)**
@@ -36,6 +36,7 @@ Type **`/sessions`** and get one calm pane with every session you have, archived
 | A restored session lands outside its section | 📁 It goes back into its original section |
 | You can't tell what is finished | 🚦 Each session shows **Needs you**, **Done** or **Not reviewed** |
 | One wrong click and a session is gone | 🛡️ It only archives and restores, it never deletes |
+| Untidy names and loose sessions pile up | ✨ **Rename & sort** suggests a clear name and a section for each one |
 
 ## 🚀 Install
 
@@ -63,15 +64,17 @@ Then open a new session in the Code tab and type **`/sessions`**. 🎉
 <details>
 <summary><strong>🔐 Let Apply work in auto mode</strong></summary>
 
-In auto mode, Claude Code's safety check refuses actions you didn't ask for in the chat, and a button press doesn't count. To let **Apply** work, add these three rules to `permissions.allow` in `~/.claude/settings.json`:
+In auto mode, Claude Code's safety check refuses actions you didn't ask for in the chat, and a button press doesn't count. To let **Apply** work, add these rules to `permissions.allow` in `~/.claude/settings.json`:
 
 ```json
 "mcp__ccd_session_mgmt__archive_session",
 "mcp__ccd_session_mgmt__unarchive_session",
-"mcp__ccd_sidebar__move_sessions"
+"mcp__ccd_sidebar__move_sessions",
+"mcp__ccd_sidebar__create_group",
+"mcp__ccd_session_mgmt__set_session_title"
 ```
 
-They allow archiving, restoring and moving sessions into sidebar sections. They never allow deleting. Without them, use a mode that asks first and click **Allow** on each change.
+They allow archiving, restoring, renaming, and moving sessions into sidebar sections (new ones too). They never allow deleting. Without them, use a mode that asks first and click **Allow** on each change.
 
 </details>
 
@@ -86,6 +89,7 @@ They allow archiving, restoring and moving sessions into sidebar sections. They 
 - 🤖 **Claude fills in the statuses.** The mod gives Claude a `set_session_status` tool, so it can review your sessions for you.
 - 📱 **Remote Control sessions too.** Sessions on claude.ai or your phone get their own **Remote Control** section, with online or offline.
 - 🔒 **Your current session is safe.** It shows as "This session" with no switch, so you can't archive the session you are in.
+- ✨ **Rename & sort.** Press the button and Claude reads the start of each session that sits in no section, then suggests a clearer name and the best section, or a new one if none fits. You see every suggestion on its card, press **Skip** on any you don't want, then **Apply**. Sessions already in a section, archived ones, pinned ones and sessions started by another session are left alone.
 - 🕒 **Newest first.** Inside every section, your most recent sessions come first.
 - 💬 **Clear messages.** If a change doesn't go through, the pane names the session and the reason.
 
@@ -95,12 +99,13 @@ They allow archiving, restoring and moving sessions into sidebar sections. They 
 2. **Ask Claude for a review.** For example: *"Review my sessions and mark each one as done or needs me."*
 3. **Type `/sessions`.** Your sections appear, with colors showing where to look first.
 4. **Clean up in seconds.** Turn **OFF** everything that's finished, then press **Apply**.
-5. **Need one back?** Turn it **ON** and press **Apply**. It returns to its original section.
+5. **Tidy loose sessions.** Press **Rename & sort**, look at the suggestions under **This Computer**, skip the ones you don't like, then press **Apply**.
+6. **Need one back?** Turn it **ON** and press **Apply**. It returns to its original section.
 
 ## 🛡️ Safe by design
 
 - 🚫 It never deletes a session. It only archives, restores and moves sessions into sidebar sections.
-- 💻 It reads your session list on your own computer. Nothing is sent anywhere else.
+- 💻 It reads your session list on your own computer. Only when you press **Rename & sort** does it send the first few messages of each loose session to Claude, the same service you already use, to suggest a name and section. Nothing else leaves your computer, and nothing changes until you press **Apply**.
 - 🔓 It is free and open source under the MIT license, so you can read every line.
 
 ## ❓ FAQ
@@ -115,7 +120,7 @@ They stay in the Claude desktop app, hidden from the sidebar. Type `/sessions` t
 <details>
 <summary><strong>Apply says a change "did not go through". What now?</strong></summary>
 
-The pane names the session and the reason. A session that is still working can't be archived, so wait for it to finish. In auto mode, add the three allow rules from the install section.
+The pane names the session and the reason. A session that is still working can't be archived, so wait for it to finish. In auto mode, add the allow rules from the install section.
 
 </details>
 
