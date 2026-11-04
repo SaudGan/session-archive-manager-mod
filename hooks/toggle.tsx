@@ -15,10 +15,10 @@ const Toggle: ClientModule<Props, State> = (props, surface) => {
     surface.onPointer(e => {
       if (e.type === 'enter') {
         surface.setState({ hot: true })
-        if (props.id === '__refresh__') surface.post({ hover: props.id, on: true })
+        if (props.id === '__refresh__' || props.id === '__suggest__') surface.post({ hover: props.id, on: true })
       } else if (e.type === 'leave') {
         surface.setState({ hot: false })
-        if (props.id === '__refresh__') surface.post({ hover: props.id, on: false })
+        if (props.id === '__refresh__' || props.id === '__suggest__') surface.post({ hover: props.id, on: false })
       }
       else if (e.type === 'up' && (e.button ?? 'left') === 'left') surface.post({ toggle: props.id })
     })
